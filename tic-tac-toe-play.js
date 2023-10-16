@@ -8,3 +8,8 @@ const printBoard = (board) => {
     console.log(`${board[7] || '_'}  ${board[8] || '_'}  ${board[9] || '_'}`);
     board[0] !== "ongoing" && console.log(board[0]);
 }
+
+let result, boardOrMessage;
+
+[result, boardOrMessage] = play("X", 1);
+printBoard(boardOrMessage);
