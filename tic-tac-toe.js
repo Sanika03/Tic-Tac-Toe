@@ -5,7 +5,7 @@ const ticTacToe = (xName, oName) => {
     const players = {
         x: xName,
         o: oName
-    }
+    };
     
     const board = [
         "ongoing",
@@ -19,7 +19,14 @@ const ticTacToe = (xName, oName) => {
     const nextPlayer = {
         X: O,
         O: X
-    }
+    };
+
+    return (player, move) => {
+        // validate right player
+        if (player !== currentPlayer) {
+            return [false, `Not your turn. It's ${currentPlayer}'s turn.`];
+        }
+    };
 };
 
 module.exports = {ticTacToe};
