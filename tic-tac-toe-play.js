@@ -11,5 +11,27 @@ const printBoard = (board) => {
 
 let result, boardOrMessage;
 
-[result, boardOrMessage] = play("X", 1);
-printBoard(boardOrMessage);
+const readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const getUserMove = (currentPlayer) => {
+    readline.question(`Enter your move for Player ${currentPlayer}: `, (move) => {
+        [result, boardOrMessage] = play(currentPlayer, parseInt(move));
+        if (result) {
+            printBoard(boardOrMessage);
+            if (boardOrMessage[0] === "ongoing") {
+                const nextPlayer = currentPlayer === "X" ? "O" : "X";
+                getUserMove(nextPlayer); // recursion
+            } else {
+                readline.close();
+            }
+        } else {
+            console.log(boardOrMessage);
+            getUserMove(currentPlayer); // Ask for move in case of error (recursion)
+        }
+    });
+};
+
+getUserMove("X"); // Start of game
