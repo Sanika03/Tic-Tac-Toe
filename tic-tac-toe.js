@@ -6,7 +6,7 @@ const ticTacToe = (xName, oName) => {
         x: xName,
         o: oName
     };
-    
+
     const board = [
         "ongoing",
         "", "", "",
